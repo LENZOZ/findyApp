@@ -1,3 +1,9 @@
+Material icon theme: iconos kwai
+prettier: formatear documento
+esLint:errores
+"vscode-styled-components":el de Julien Poissonnier(es el que sale con el certificado azul). Sirve para trabajar con styled components y editar css sin dejar la fox.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
