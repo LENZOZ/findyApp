@@ -1,14 +1,28 @@
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { NavBar } from './components/navbar/NavBar';
+// Componentes
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Registro from './pages/Registro';
 
-//Importar componentes
+import NavBarHome from './components/navbar/navbar';
 
-export function App(){
-return(
-  <div>
-      <NavBar/>
-  </div>
-);
+function App() {
+  return (
+      <div className="App">
+        <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<NavBarHome/>}>
+            <Route path='home' element={<Home/>} />
+            <Route path='login' element={<Login/>} />
+            <Route path='registro' element={<Registro/>} />
 
+            <Route path='*' element={<Navigate replace to="/"/>} />
+            </Route>
+        </Routes>
+        </BrowserRouter>
+      </div>
+  );
 }
+export default App;
+
