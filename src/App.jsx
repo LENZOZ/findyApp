@@ -14,11 +14,10 @@ function App() {
         <Routes>
           <Route path='/' element={<NavBarHome/>}>
             <Route path='home' element={<Home/>} />
+            <Route path='*' element={<Navigate replace to="/home"/>} />
+            </Route>
             <Route path='login' element={<Login/>} />
             <Route path='registro' element={<Registro/>} />
-
-            <Route path='*' element={<Navigate replace to="/"/>} />
-            </Route>
         </Routes>
         </BrowserRouter>
       </div>
