@@ -1,0 +1,30 @@
+li{
+    list-style: none;
+    font-size: 1.5rem;
+    text-align: center;
+}
+li:hover{
+    opacity:0.6;
+}
+
+
+@media(max-width:560px){
+    .Card.Img{
+        width:90%;
+        height: auto;
+    }
+}
+
+ul{
+    display:grid;
+    grid-template-columns: repeat(auto-fill,230px);
+    gap: 40px; /*separación entre los elementos*/
+    padding: 40px; /*Separación entre elementos y borde*/
+    justify-content: center;
+}
+
+@media(max-width:560px){
+    ul{
+        grid-template-columns:100%;
+    }
+}

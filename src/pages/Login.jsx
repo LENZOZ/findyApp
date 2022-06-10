@@ -1,8 +1,54 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Card, Button, Form } from "react-bootstrap";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo.svg";
+
 const Login = () => {
+  //referencias
+  const correoRef = useRef();
+  const passRef = useRef();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const auth = localStorage.getItem("usuario");
+    if (auth) {
+      navigate("/");
+    }
+  }, []);
+
+  const handleSubmit = async () => {
+    //RECUPERO
+    const correo = correoRef.current.value;
+    const contrasenna = passRef.current.value;
+    console.log(correo);
+    console.log(contrasenna);
+    //event.preventDefault();
+    //direcciona a AHome
+    /* if ((correo === 'admin@x.cl') && (pass ==='123')){
+      navigate('/aHome');
+    }
+
+    if ((correo === 'user@x.cl') && (pass ==='123')){
+      navigate('/uHome');
+    }*/
+
+    let result = await fetch("http://localhost:3001/api/usuario/login", {
+      method: "POST",
+      body: JSON.stringify({ correo, contrasenna }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    result = await result.json();
+    console.warn(result);
+    if (result.nombre) {
+      localStorage.setItem("usuario", JSON.stringify(result));
+      navigate("/");
+    } else {
+      alert("Por favor, ingresa los datos correctos");
+    }
+  };
+
   return (
     <div className="d-flex justify-content-center  m-4">
       <Card style={{ width: "18rem" }} className="border-0">
@@ -13,7 +59,11 @@ const Login = () => {
             <Form>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Correo:</Form.Label>
-                <Form.Control type="email" placeholder="Ingresa tu correo" />
+                <Form.Control
+                  type="email"
+                  placeholder="Ingresa tu correo"
+                  ref={correoRef}
+                />
                 <Form.Text className="text-muted">
                   No compartiremos tu correo con nadie.
                 </Form.Text>
@@ -21,17 +71,26 @@ const Login = () => {
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Contraseña</Form.Label>
-                <Form.Control type="password" placeholder="***********" />
+                <Form.Control
+                  type="password"
+                  placeholder="***********"
+                  ref={passRef}
+                />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="Recordar mis datos" />
               </Form.Group>
               <div className="d-grid gap-2">
-              <Button variant="dark" type="submit" className="btn-default" size="lg">
-                Siguiente
-              </Button>
+                <Button
+                  onClick={handleSubmit}
+                  variant="dark"
+                  type="button"
+                  className="btn-default"
+                  size="lg"
+                >
+                  Siguiente
+                </Button>
               </div>
-              
             </Form>
           </Card.Text>
         </Card.Body>
