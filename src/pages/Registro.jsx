@@ -32,7 +32,7 @@ const Registro =()=>{
     console.log(apellido);
     console.log(rut);
     
-    let result = await fetch ("http://localhost:3001/api/usuario/registro",{
+    let result = await fetch ("https://api.findy.cl/api/usuario/registro",{
       method:'POST',
       body: JSON.stringify({correo,contrasenna,nombre,apellido,rut}),
       headers: {

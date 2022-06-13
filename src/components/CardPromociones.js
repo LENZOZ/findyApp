@@ -11,7 +11,7 @@ const CardPromociones = () => {
   }, []);
 
   const getPromociones = async () => {
-    let result = await fetch("http://localhost:3001/api/promocion");
+    let result = await fetch("https://api.findy.cl/api/promocion");
     result = await result.json();
     setPromociones(result);
   };
@@ -34,10 +34,11 @@ const CardPromociones = () => {
                 src={promocion.ruta_imagen}
                 alt={promocion.nombre}
               />
+              </Link>
               <Carousel.Caption>
             
               </Carousel.Caption>
-            </Link>
+
           </Carousel.Item>
         ))}
       </Carousel>

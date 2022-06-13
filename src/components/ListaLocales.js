@@ -13,7 +13,7 @@ const ListaLocales = () => {
   }, []);
 
   const getLocales = async () => {
-    let result = await fetch("http://localhost:3001/api/local");
+    let result = await fetch("https://api.findy.cl/api/local");
     result = await result.json();
     setLocales(result);
   };
@@ -30,26 +30,29 @@ const ListaLocales = () => {
         <ul>
           {locales.map((local) => (
             <li>
-              <Link
-                to={"/local/" + local.id_local}
-                style={{ color: "inherit", textDecoration: "inherit" }}
-              >
+              
                 <Card
                   style={{ width: "10rem", border: "none" }}
                   key={local.id_local}
                   local={local}
                 >
+                  <Link
+                to={"/local/" + local.id_local}
+                style={{ color: "inherit", textDecoration: "inherit" }}
+              >
                   <Card.Img
                     variant="top"
                     src={local.ruta_imagen}
                     alt={local.nombre}
                     bsPrefix="card-img"
+                    className="imgLocal"
                   />
+                  </Link>
                   <Card.Body>
                     <Card.Title align="center">{local.nombre}</Card.Title>
                   </Card.Body>
                 </Card>
-              </Link>
+              
             </li>
           ))}
         </ul>

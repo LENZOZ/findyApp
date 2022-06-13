@@ -11,6 +11,7 @@ const Login = () => {
 
   useEffect(() => {
     const auth = localStorage.getItem("usuario");
+    console.log(auth);
     if (auth) {
       navigate("/");
     }
@@ -32,7 +33,7 @@ const Login = () => {
       navigate('/uHome');
     }*/
 
-    let result = await fetch("http://localhost:3001/api/usuario/login", {
+    let result = await fetch("https://api.findy.cl/api/usuario/login", {
       method: "POST",
       body: JSON.stringify({ correo, contrasenna }),
       headers: {
@@ -40,7 +41,7 @@ const Login = () => {
       },
     });
     result = await result.json();
-    console.warn(result);
+    //console.warn(result);
     if (result.nombre) {
       localStorage.setItem("usuario", JSON.stringify(result));
       navigate("/");

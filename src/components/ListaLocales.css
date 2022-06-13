@@ -9,8 +9,8 @@ li:hover{
 
 
 @media(max-width:560px){
-    .Card.Img{
-        width:90%;
+    Card.Img{
+        width:50%;
         height: auto;
     }
 }
