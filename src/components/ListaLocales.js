@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
-import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import CardPromociones from "./CardPromociones";
 import './ListaLocales.css';
