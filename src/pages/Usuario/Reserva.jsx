@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Overlay from 'react-bootstrap/Overlay';
 import Tooltip from 'react-bootstrap/Tooltip';
 
-const API = "http://localhost:3001/api";
+const API = "https://api.findy.cl/api";
 
 export function get(path) {
   return fetch(API + path, {
@@ -17,55 +17,6 @@ export function get(path) {
     },
   }).then((result) => result.json());
 }
-
-
-export function BtnReservar(props) {
-
-    const handleSubmit = async (props) => {
-        //RECUPERO
-        const mesa= props.mesa.mesa_id;
-    
-        let result = await fetch("http://localhost:3001/mesa", {
-          method: "POST",
-          body: JSON.stringify({ mesa}),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        result = await result.json();
-        //console.warn(result);
-        if (result.mesa_id) {
-          Navigate("/");
-        } else {
-          alert("Por favor, ingresa los datos correctos");
-        }
-      };
-
-
-    const [show, setShow] = useState(false);
-    const target = useRef(null);
-    const pepe = 1;
-    const m = props.m;
-    return (
-      <>
-      
-        <div ref={target} onClick={() => setShow(!show)}>
-        < SiAirtable color="green" className="mesa" />
-        </div>
-        <Overlay target={target.current} show={show} placement="bottom">
-          {(props) => (
-            <Tooltip id="overlay-reserva" {...props}>
-              Capacidad: {m.capacidad}
-              <br></br>
-              <br></br>
-              
-              <Button variant="outline-warning" onClick={handleSubmit}>Reservar</Button>
-            </Tooltip>
-          )}
-        </Overlay>
-      </>
-    );
-  }
 
 
 export function Reserva () {
@@ -100,7 +51,12 @@ export function Reserva () {
           </>
             ) : (
             <>
-          <BtnReservar m={mesa}/>
+            <Link
+                to={"/mesa/" + mesa.id_Mesa}
+                style={{ color: "inherit", textDecoration: "inherit" }}
+              >
+                < SiAirtable color="green" className="mesa"/>
+            </Link>
           </>
 
             )}

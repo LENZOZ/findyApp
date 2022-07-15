@@ -8,7 +8,7 @@ const NavBarHome = () => {
   const navigate = useNavigate();
   const logout = () => {
     localStorage.clear();
-    navigate("/login");
+    navigate("/home");
   };
   return (
     <div>
@@ -37,8 +37,8 @@ const NavBarHome = () => {
                     <Button variant="dark">Salir</Button>
                   </Nav.Link>
 
-                  <Nav.Link as={Link} to="/perfil">
-                    <Button variant="dark">Mi Perfil {JSON.parse(auth).nombre}</Button>
+                  <Nav.Link as={Link} to="/MisReservas">
+                    <Button variant="dark">Mis Reservas {JSON.parse(auth).nombre}</Button>
                   </Nav.Link>
                 </>
               ) : (

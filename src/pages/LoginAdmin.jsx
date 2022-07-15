@@ -7,7 +7,7 @@ import logo from "../assets/images/logo.svg";
  * @constructor
  * @param {string} correoRef - Rescata el valor ingresado en input del correo 
  */
-const Login = () => {
+const LoginAdmin = () => {
   //referencias
   const correoRef = useRef();
   const passRef = useRef();
@@ -37,7 +37,7 @@ const Login = () => {
       navigate('/uHome');
     }*/
 
-    let result = await fetch("https://api.findy.cl/api/usuario/login", {
+    let result = await fetch("http://localhost:3001/api/usuario/loginA", {
       method: "POST",
       body: JSON.stringify({ correo, contrasenna }),
       headers: {
@@ -103,4 +103,4 @@ const Login = () => {
     </div>
   );
 };
-export default Login;
+export default LoginAdmin;
