@@ -1,0 +1,30 @@
+.ttable{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    text-shadow: 0 0em .7em gray;
+    margin-top: 9px;
+    width: 20%;
+    height:fit-content;
+    display: flex;
+    align-items: center;
+    padding: 15px 125px 15px 30px;
+    border-radius: 10px;
+    background-color: gold;
+    box-shadow: 0  .2em .5em lightgray ;
+  }
+
+  .dtable{
+    box-shadow: 0 .2em .5em lightgrey;
+    background-color: white;
+    margin-right: 7px;
+  }
+
+  .tableNav{
+    width: fit-content;
+    height: fit-content;
+    margin-top: 9px;
+    margin-right: 5%;
+    border-radius: 50%;
+    box-shadow: 0  0em 1em white ;
+  }

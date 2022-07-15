@@ -37,7 +37,7 @@ const LoginAdmin = () => {
       navigate('/uHome');
     }*/
 
-    let result = await fetch("http://localhost:3001/api/usuario/loginA", {
+    let result = await fetch("http://localhost:3001/api/usuario/logina/", {
       method: "POST",
       body: JSON.stringify({ correo, contrasenna }),
       headers: {
@@ -46,9 +46,9 @@ const LoginAdmin = () => {
     });
     result = await result.json();
     //console.warn(result);
-    if (result.nombre) {
+    if (result.Usuario_idUsuario) {
       localStorage.setItem("usuario", JSON.stringify(result));
-      navigate("/");
+      navigate("/admin/");
     } else {
       alert("Por favor, ingresa los datos correctos");
     }

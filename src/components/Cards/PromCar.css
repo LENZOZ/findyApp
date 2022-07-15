@@ -1,0 +1,27 @@
+.Pcar{
+    border-top: 0;
+    width: 97%;
+    margin-top: 15px;
+    margin-right: 3%;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    box-shadow: 0 .3em .5em lightgray;
+    border-radius: 1%;
+}
+
+.PromCar img{
+    object-fit: cover;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    border-radius: 1%;
+}
+
+.h3car{
+    text-shadow: 0 0 1.8em black;
+}
+
+.Pcar:hover img {
+    filter: brightness(75%);
+  }

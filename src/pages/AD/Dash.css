@@ -1,0 +1,23 @@
+.cards{
+    margin-top: 5%;
+    margin-right: 5%;
+    border-radius: 7%;
+    background-color: white;
+    color: dimgray;
+    box-shadow: 0  .2em .5em lightgray ;
+}
+
+.cardstittle{
+    color: rgb(70,70,70);
+}
+
+.dashbg{
+    background-color: rgb(34,35,43);
+    min-height: 100vh;
+    border-top: 3px solid dimgray;
+    
+}
+
+icon{
+    color: gold;
+}

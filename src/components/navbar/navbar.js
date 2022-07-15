@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import logo from "../../assets/images/logo.svg";
-import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import { Navbar, Container, Nav, Button, NavDropdown } from "react-bootstrap";
 import { Outlet, Link, useNavigate } from "react-router-dom";
 
 const NavBarHome = () => {
@@ -38,14 +38,34 @@ const NavBarHome = () => {
                   </Nav.Link>
 
                   <Nav.Link as={Link} to="/MisReservas">
-                    <Button variant="dark">Mis Reservas {JSON.parse(auth).nombre}</Button>
+                    <Button variant="dark">
+                      Mis Reservas {JSON.parse(auth).nombre}
+                    </Button>
                   </Nav.Link>
                 </>
               ) : (
                 <>
-                  <Nav.Link as={Link} to="/login">
-                    <Button variant="dark">Iniciar Sesión</Button>
-                  </Nav.Link>
+                  <NavDropdown
+                    title="Iniciar Sesión"
+                    id="navbarScrollingDropdown"
+                  >
+                    <NavDropdown.Item>
+                      <Nav.Link as={Link} to="/login">
+                        <Button variant="dark">
+                          ¡Soy Cliente!
+                        </Button>
+                      </Nav.Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item>
+                      <Link to="/loginAdmin" align="left">
+                        <Button variant="dark">
+                          ¡Soy administrador!
+                        </Button>
+                      </Link>
+                    </NavDropdown.Item>
+                    
+                  </NavDropdown>
 
                   <Nav.Link as={Link} to="/registro">
                     <Button variant="outline-warning">Registrarme</Button>
