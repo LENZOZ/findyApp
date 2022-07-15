@@ -37,7 +37,7 @@ const LoginAdmin = () => {
       navigate('/uHome');
     }*/
 
-    let result = await fetch("http://localhost:3001/api/usuario/logina/", {
+    let result = await fetch("https://api.findy.cl/api/usuario/logina/", {
       method: "POST",
       body: JSON.stringify({ correo, contrasenna }),
       headers: {

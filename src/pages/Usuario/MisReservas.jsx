@@ -18,13 +18,13 @@ export function MisReservas(){
 
     const getReservas = async () => {
    
-        let result = await fetch("http://localhost:3001/api/reserva/"+id);
+        let result = await fetch("https://api.findy.cl/api/reserva/"+id);
         result = await result.json();
         setReservas(result);
       };
     
     const getLocal = async () =>{
-      let result = await fetch("http://localhost:3001/api/local/");
+      let result = await fetch("https://api.findy.cl/api/local/");
       result = await result.json();
       setLocales(result);
       console.warn(locales)

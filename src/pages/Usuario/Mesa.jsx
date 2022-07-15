@@ -17,7 +17,7 @@ export function Mesa (){
     const fecha=dateRef.current.value;
     let id = JSON.parse(auth).id_usuario;
 
-    let result = await fetch("http://localhost:3001/api/mesa", {
+    let result = await fetch("https://api.findy.cl/api/mesa", {
       method: "POST",
       body: JSON.stringify({ id, mesaId,fecha}),
       headers: {
@@ -31,7 +31,7 @@ export function Mesa (){
 
   const getLocales = async () => {
    
-    let result = await fetch("http://localhost:3001/api/caracteristica/"+mesaId);
+    let result = await fetch("https://api.findy.cl/api/caracteristica/"+mesaId);
     result = await result.json();
     setCaracteristicas(result);
   };
