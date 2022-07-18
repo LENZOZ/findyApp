@@ -11,6 +11,63 @@ import * as IoIcons from 'react-icons/io';
 import "./Dash.css";
 
 export const Dash = () => {
+
+  /* Se obtienen y setean los datos de sesión */
+  const auth = localStorage.getItem("usuario");
+    let localId = JSON.parse(auth).Local_id_local;
+
+    const [reservas, setReservas] = useState([]);
+    const [reservas2, setReservas2] = useState([]);
+    const [PromosActivas, setPromosActivas] = useState([]);
+    const [personal, setPersonal] = useState([]);
+
+  useEffect(() => {
+    getReservas();
+    getReservas2();
+    getPromosActivas();
+    getPersonal();
+  }, []);
+
+  const getReservas = async () => {
+  let result = await fetch("http://localhost:3001/api/reserva", {
+    method: "POST",
+    body: JSON.stringify({ localId}),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((result) => result.json());;
+  setReservas(result);
+  };
+
+  const getReservas2 = async () => {
+    let result = await fetch("http://localhost:3001/api/reserva/total/"+localId, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((result) => result.json());;
+    setReservas2(result);
+    };
+    const getPromosActivas = async () => {
+      let result = await fetch("http://localhost:3001/api/promocion/"+localId, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then((result) => result.json());;
+      setPromosActivas(result);
+      };
+
+      const getPersonal = async () => {
+        let result = await fetch("http://localhost:3001/api/personal/"+localId, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }).then((result) => result.json());;
+        setPersonal(result);
+        };
+
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
@@ -40,7 +97,7 @@ export const Dash = () => {
                   <Card.Body>
                     <Card.Title className="cardstittle" >Reservas Semanales</Card.Title>
                     <Card.Text>
-                      30
+                      { reservas.length}
                     </Card.Text>
                     <icon><AiIcons.AiFillCreditCard /></icon>
                   </Card.Body>
@@ -52,7 +109,7 @@ export const Dash = () => {
                   <Card.Body>
                     <Card.Title className="cardstittle" >Reservas totales</Card.Title>
                     <Card.Text>
-                      120
+                      {reservas2.length}
                     </Card.Text>
                     <icon><AiIcons.AiFillCreditCard /></icon>
                   </Card.Body>
@@ -64,7 +121,7 @@ export const Dash = () => {
                   <Card.Body>
                     <Card.Title className="cardstittle" >Personal</Card.Title>
                     <Card.Text>
-                      34
+                      {personal.length}
                     </Card.Text>
                     <icon><IoIcons.IoMdPeople /></icon>
                   </Card.Body>
@@ -76,7 +133,7 @@ export const Dash = () => {
                   <Card.Body>
                     <Card.Title className="cardstittle" >Promociones activas</Card.Title>
                     <Card.Text>
-                      3
+                      {PromosActivas.length}
                     </Card.Text>
                     <icon><AiIcons.AiFillCreditCard /></icon>
                   </Card.Body>
