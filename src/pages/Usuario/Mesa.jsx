@@ -12,7 +12,10 @@ export function Mesa (){
   useEffect(() => {
     getLocales();
   }, []);
-
+  /**
+   *  
+   *  Maneja la fecha recibida
+   */
   const handleSubmit = async () =>{
     const fecha=dateRef.current.value;
     let id = JSON.parse(auth).id_usuario;

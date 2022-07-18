@@ -3,8 +3,9 @@ import { Button, Card, Container } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import React, { Component } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
+import "./LocalDetalle.css";
 
-const API = "https://api.findy.cl/api";
+const API = "http://localhost:3001/api";
 
 const loader = new Loader({
   apiKey: "AIzaSyA0hhQQOW8VPRgQ42EecqdSyvH3lPfRmT8",
@@ -95,6 +96,7 @@ export function LocalDetalle() {
   // Funcion de la api map de google !se deja aquí por utilización de parametros extraidos de la function LocalDetalle
 
   const imageUrl = local.ruta_imagen;
+  const cartaUrl = local.ruta_carta;
   return (
     <div>
       <br></br>
@@ -102,7 +104,7 @@ export function LocalDetalle() {
         <Card style={{ width: "20rem", border: "none" }}>
           <Card.Img variant="top" src={imageUrl} bsPrefix />
           <Card.Body>
-            <Card.Title>{local.nombre}</Card.Title>
+            <Card.Title><h3>{local.nombre}</h3></Card.Title>
           </Card.Body>
         </Card>
         <div id="map">
@@ -119,13 +121,19 @@ export function LocalDetalle() {
         </Link>
         <br></br>
       </Container>
-      <Container>
+      <Container align="center">
+        <br></br>
         <h3>Carta:</h3>
-        {Productos.map((producto) => (
-          <p>
-            {producto.nombre}:${producto.precio}
-          </p>
-        ))}
+        <br></br>
+        <div id="wrap" >
+          <iframe
+            src={`${cartaUrl}#view=fitH`}
+            height="1000px"
+            width="100%"
+            title="carta"
+          ></iframe>
+        </div>
+        
       </Container>
     </div>
   );

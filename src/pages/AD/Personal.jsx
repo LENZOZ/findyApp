@@ -8,6 +8,7 @@ import DataTable from "../../components/Graficas/TablePersonal";
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
+import DatagridPersonal from "../../components/Graficas/DataGridPersonal";
 
 
 export const Personal = () => {
@@ -46,7 +47,7 @@ export const Personal = () => {
             </Row>
             <Row xs md lg className="g-4">
             <Col>
-                 <DataTable />
+                 <DatagridPersonal/>
             </Col>
             </Row>
           </Col>
