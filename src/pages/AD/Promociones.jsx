@@ -22,28 +22,15 @@ export const Promociones = () => {
              {/*Sidebar+Content*/}
       <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
         <Row>
-          <Col xs={4} md={3} className="dashbg">
-          {SidebarData.map((item, index) => {
-                      return (
-                        <li key={index} className={item.cName}>
-                          <Link to={item.path}>
-                            {item.icon}
-                            <span>{item.title}</span>
-                          </Link>
-                        </li>
-                      );
-                    })}
-          </Col>
           <Col xs md lg >
           <Row xs={1} md lg className="g-4">
             {/*Tablas*/}
-            <Col>
+            <Col align="center">           
             <PromCar />
-            <Navbar.Brand as={Link} to="/admin/promociones/agregar"  ><AiIcons.AiFillPlusCircle fontSize="xx-large" /></Navbar.Brand>
+            <Navbar.Brand as={Link} to="/admin/promociones/agregar" className="ttables">+</Navbar.Brand>
             <PromGrid />
             </Col>
           </Row>
-              
           </Col>
         </Row>
       </Tab.Container>

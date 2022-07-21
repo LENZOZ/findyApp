@@ -1,8 +1,12 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, Component } from "react";
 import { Card, Button, Form, Row, Col, Container, Tab, Nav } from "react-bootstrap";
 import { Outlet, Link, useNavigate } from "react-router-dom";
-import { SidebarData } from "../../components/navbar/SidebarData";
 import DataTable from "../../components/Graficas/TablaMesas";
+
+import axios from "axios";
+import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
@@ -11,9 +15,7 @@ import * as IoIcons from 'react-icons/io';
 
 export const Mesas = () => {
 
-    const [sidebar, setSidebar] = useState(false);
 
-      const showSidebar = () => setSidebar(!sidebar);
 
     return(
         <div>
@@ -21,18 +23,6 @@ export const Mesas = () => {
              {/*Sidebar+Content*/}
       <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
         <Row>
-          <Col xs={4} md={3} className="dashbg">
-          {SidebarData.map((item, index) => {
-                      return (
-                        <li key={index} className={item.cName}>
-                          <Link to={item.path}>
-                            {item.icon}
-                            <span>{item.title}</span>
-                          </Link>
-                        </li>
-                      );
-                    })}
-          </Col>
               <Col xs md lg >
               <Row xs md lg className="g-4">
                 {/*Tablas*/}

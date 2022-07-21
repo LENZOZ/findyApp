@@ -69,7 +69,7 @@ export const A_productos =()=>{
     {/*Formulario*/}
     return(
         <div className="d-flex justify-content-center  m-4">
-      <Card style={{ width: "18rem" }} className="border-0">
+      <Card style={{ width: "24rem" }} className="border-0">
         <Card.Body>
         <Navbar.Brand as={Link} to="/admin/productos"><AiIcons.AiOutlineArrowLeft /></Navbar.Brand>
           <Card.Title className="text-center">Nuevo producto</Card.Title>

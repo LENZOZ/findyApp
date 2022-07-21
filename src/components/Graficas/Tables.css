@@ -3,6 +3,7 @@
     color: white;
     font-size: 18px;
     text-shadow: 0 0em .7em gray;
+    margin-left: 2%;
     margin-top: 9px;
     width: 20%;
     height:fit-content;
@@ -14,10 +15,29 @@
     box-shadow: 0  .2em .5em lightgray ;
   }
 
+  .ttables{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    text-shadow: 0 0em .7em gray;
+    margin-top: 9px;
+    margin-left: 1%;
+    width: auto;
+    height:fit-content;
+    display: flex;
+    align-items: center;
+    padding-left: 50%;
+    border-radius: 10px;
+    background-color: gold;
+    box-shadow: 0  .2em .5em lightgray ;
+  }
+
   .dtable{
     box-shadow: 0 .2em .5em lightgrey;
     background-color: white;
-    margin-right: 7px;
+    margin-top: 2%;
+    margin-right: 2%;
+    margin-left: 2%;
   }
 
   .tableNav{

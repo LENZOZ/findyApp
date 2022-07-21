@@ -1,7 +1,10 @@
 .cards{
+    padding: 5%;
     margin-top: 5%;
+    margin-left: 5%;
     margin-right: 5%;
-    border-radius: 7%;
+    border-radius: 3%;
+    height: fit-content;
     background-color: white;
     color: dimgray;
     box-shadow: 0  .2em .5em lightgray ;
@@ -9,6 +12,11 @@
 
 .cardstittle{
     color: rgb(70,70,70);
+
+}
+
+.rowtt{
+    display:block;
 }
 
 .dashbg{

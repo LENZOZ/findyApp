@@ -75,7 +75,7 @@ export const A_personal =()=>{
     {/*Formulario*/}
     return(
         <div className="d-flex justify-content-center  m-4">
-      <Card style={{ width: "18rem" }} className="border-0">
+      <Card style={{ width: "24rem" }} className="border-0">
         <Card.Body>
         <Navbar.Brand as={Link} to="/admin/personal"><AiIcons.AiOutlineArrowLeft /></Navbar.Brand>
           <Card.Title className="text-center">Ingrese un nuevo trabajador</Card.Title>

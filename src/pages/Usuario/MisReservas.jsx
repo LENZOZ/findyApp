@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container, Table } from "react-bootstrap";
-
+import Moment from 'moment';
 
 
 
@@ -9,12 +9,23 @@ export function MisReservas(){
     let id = JSON.parse(auth).id_usuario;
     const [reservas, setReservas] = useState([]);
     const [locales, setLocales] = useState([]);
+    const [mesas, setMesas] = useState([]);
     let dir;
 
     useEffect(() => {
         getReservas();
         getLocal();
+        getMesas();
       }, []);
+
+
+      const getMesas = async () => {
+   
+        let result = await fetch("http://localhost:3001/api/mesa");
+        result = await result.json();
+        setMesas(result);
+        console.table(mesas);
+      };
 
     const getReservas = async () => {
    
@@ -43,6 +54,7 @@ export function MisReservas(){
       return nombre;
     }
     return (
+
         <>
         <Container>
         <br></br>
@@ -53,6 +65,7 @@ export function MisReservas(){
       <th>Local</th>
       <th>Mesa</th>
       <th>Fecha & Hora</th>
+      
     </tr>
   </thead>
   <tbody>
@@ -62,11 +75,23 @@ export function MisReservas(){
       <td>{reserva.id_Reserva}</td>
       <td>{localR(reserva.Local_id_local)}</td>
       <td>{reserva.Mesa_id_mesa}</td>
-      <td>{reserva.fecha_reserva}</td>
+      <td>{Moment(reserva.fecha_reserva).format('DD-MM-YYYY hh:mm')}</td> 
+      <td></td>
     </tr>
   ))}
   </tbody>
 </Table>
+<table>
+<th>Prueba</th>
+
+{mesas.map((mesa)=>(
+<tr>
+  <td>{mesa.Local.nombre}</td>
+  </tr>
+))}
+
+</table>
+
 </Container>
         </>
     );

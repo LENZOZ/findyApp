@@ -1,7 +1,19 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import logo from "../../assets/images/logo.svg";
-import { Navbar, Container, Nav, Button, NavDropdown } from "react-bootstrap";
+import { Navbar, Container, Nav, Button, NavDropdown, Dropdown, Collapse } from "react-bootstrap";
 import { Outlet, Link, useNavigate } from "react-router-dom";
+import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
+import Hamburger from "hamburger-react";
+import { Hidden } from "@material-ui/core";
+
+import { SidebarData } from "../../components/navbar/SidebarData";
+import { IconContext } from 'react-icons';
+import { SideAdmin } from "./Offcanvas";
+
+import * as FaIcons from 'react-icons/fa';
+import * as AiIcons from 'react-icons/ai';
+import * as IoIcons from 'react-icons/io';
+
 
 const NavBarHome = () => {
   const auth = localStorage.getItem("usuario");
@@ -10,10 +22,21 @@ const NavBarHome = () => {
     localStorage.clear();
     navigate("/home");
   };
+  const [open, setOpen] = useState(false);
+
+
   return (
     <div>
-      <Navbar className="navBg" collapseOnSelect expand="lg" variant="dark">
+      <Navbar className="navBg" expand="lg" variant="dark">
         <Container fluid>
+        {auth ? (
+          <>
+          <SideAdmin />
+          </>
+        ):(
+          <></>
+        )}
+          
           <Navbar.Brand as={Link} to="/">
             <img
               src={logo}
@@ -23,8 +46,10 @@ const NavBarHome = () => {
               alt="Findy logo"
             />
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
+          <Hidden mdUp>
+          <Hamburger toggled={open} toggle={setOpen} color="white"  />
+          </Hidden>
+          <Navbar.Collapse in={open}>
             <Nav className="me-auto">
               <Nav.Link as={Link} to="/">
                 Inicio
@@ -68,7 +93,7 @@ const NavBarHome = () => {
                   </NavDropdown>
 
                   <Nav.Link as={Link} to="/registro">
-                    <Button variant="outline-warning">Registrarme</Button>
+                    <Button variant="outline-warning" >Registrarme</Button>
                   </Nav.Link>
                 </>
               )}

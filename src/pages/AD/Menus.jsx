@@ -11,31 +11,16 @@ import * as IoIcons from 'react-icons/io';
 
 export const Menus = () => {
 
-    const [sidebar, setSidebar] = useState(false);
-
-      const showSidebar = () => setSidebar(!sidebar);
 
     return(
         <div>
 
              {/*Sidebar+Content*/}
 
-      <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
+      <Tab.Container id="list-group-tabs-example">
         <Row>
-          <Col xs={4} md={3} className="dashbg">
-          {SidebarData.map((item, index) => {
-                      return (
-                        <li key={index} className={item.cName}>
-                          <Link to={item.path}>
-                            {item.icon}
-                            <span>{item.title}</span>
-                          </Link>
-                        </li>
-                      );
-                    })}
-          </Col>
-          <Col xs={7} md lg >
-          <Row xs={1} md lg className="g-4">
+          <Col xs md lg >
+          <Row xs md lg className="g-4">
             {/*Body*/}
             <Col >
             

@@ -8,7 +8,6 @@ import DataTable from "../../components/Graficas/TablePersonal";
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
-import DatagridPersonal from "../../components/Graficas/DataGridPersonal";
 
 
 export const Personal = () => {
@@ -19,22 +18,9 @@ export const Personal = () => {
 
     return(
         <div>
-
              {/*Sidebar+Content*/}
       <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
         <Row>
-          <Col xs={4} md={3} className="dashbg">
-          {SidebarData.map((item, index) => {
-                      return (
-                        <li key={index} className={item.cName}>
-                          <Link to={item.path}>
-                            {item.icon}
-                            <span>{item.title}</span>
-                          </Link>
-                        </li>
-                      );
-                    })}
-          </Col>
           <Col xs md lg >
           <Row xs md lg className="g-4">
             {/*Tablas*/}
@@ -47,7 +33,7 @@ export const Personal = () => {
             </Row>
             <Row xs md lg className="g-4">
             <Col>
-                 <DatagridPersonal/>
+                 <DataTable />
             </Col>
             </Row>
           </Col>

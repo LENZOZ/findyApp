@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Carousel } from 'react-bootstrap';
-import "./PromCar.css"
+import "./PromCar.css";
 
 
 export function LocalCar() {
@@ -22,7 +22,7 @@ export function LocalCar() {
 
     return(
         
-        <div>
+        <div className="PromCar">
             <Carousel className='Pcar'>
             {locales.map((local) => (
                 <Carousel.Item>

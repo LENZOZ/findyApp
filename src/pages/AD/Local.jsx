@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Card, Button, Form, Row, Col, Container, Tab } from "react-bootstrap";
 import { Outlet, Link, useNavigate } from "react-router-dom";
+
 import { SidebarData } from "../../components/navbar/SidebarData";
 
 import * as FaIcons from 'react-icons/fa';
@@ -20,22 +21,9 @@ export const Local = () => {
 
     return(
         <div>
-
              {/*Sidebar+Content*/}
-      <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
+      <Tab.Container id="list-group-tabs-example">
         <Row>
-          <Col xs={4} md={3} className="dashbg">
-          {SidebarData.map((item, index) => {
-                      return (
-                        <li key={index} className={item.cName}>
-                          <Link to={item.path}>
-                            {item.icon}
-                            <span>{item.title}</span>
-                          </Link>
-                        </li>
-                      );
-                    })}
-          </Col>
           <Col xs md lg >
           <Row xs={1} md lg className="g-4">
             {/*Tablas*/}
@@ -43,7 +31,7 @@ export const Local = () => {
                     <Tab.Container>
                     <Row>
                         <Col align="center">
-                        <h2 className="ttable" style={{padding:20,width:130}}>Bienvenido a su local</h2>
+                        <h2 className="ttable" style={{padding:10,width:210}}>Bienvenido a su local</h2>
                         </Col>
                       </Row>
                       <Row>
@@ -52,7 +40,8 @@ export const Local = () => {
                         </Col>
                       </Row>
                       <Row>
-                        <Col>
+                        <Col align="center">
+                        <h2 className="ttable" style={{padding:20,width:150}}>Menu activo</h2>
                         <TableMenus />
                         </Col>
                         <Col align="center">
@@ -63,13 +52,9 @@ export const Local = () => {
                     </Tab.Container>
             </Col>
           </Row>
-              
           </Col>
         </Row>
-      </Tab.Container>
-
-            
-
+        </Tab.Container>
         </div>
  
     )

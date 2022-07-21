@@ -1,4 +1,3 @@
-import React from 'react';
 
 export default function donut(){
     return(
@@ -8,3 +7,4 @@ export default function donut(){
     );
 }
 
+import React from 'react';
