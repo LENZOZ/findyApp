@@ -19,7 +19,7 @@ export function SideAdmin() {
       
       <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header className="offttHead" closeButton>
-          <Offcanvas.Title className="offttTittle">Findy :D</Offcanvas.Title>
+          <Offcanvas.Title className="offttTittle">Administrador</Offcanvas.Title>
         </Offcanvas.Header>
 
 

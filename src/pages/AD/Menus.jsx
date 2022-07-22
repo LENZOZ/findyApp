@@ -25,13 +25,8 @@ export const Menus = () => {
             <Col >
             
             <Row>
-              <Col>
-              <h6 className='ttable' >Menus</h6>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-              <h6 className='ttable' >Activo</h6>
+            <Col>
+              <h6 className='ttable' >Menús</h6>
               </Col>
               <Col align="right" >
               <Nav.Link as={Link} to="/admin/menus/agregar" className='tableNav' ><AiIcons.AiFillPlusCircle fontSize="xx-large" /></Nav.Link>
