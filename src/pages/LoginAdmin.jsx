@@ -47,7 +47,7 @@ const LoginAdmin = () => {
     result = await result.json();
     //console.warn(result);
     if (result.Usuario_idUsuario) {
-      localStorage.setItem("usuario", JSON.stringify(result));
+      localStorage.setItem("admin", JSON.stringify(result));
       navigate("/admin/");
     } else {
       alert("Por favor, ingresa los datos correctos");
