@@ -4,6 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
+import * as AiIcons from 'react-icons/ai';
+import "./TablesV2.css";
 
 const authA = localStorage.getItem("admin");
 
@@ -61,7 +63,7 @@ peticionDelete=()=>{
    
 
   }).catch(error=>{
-    alert("No se puede eliminar esta mesa");
+    alert("No se puede eliminar el trabajador");
   })
 }
 /** hasta por aqui */
@@ -109,9 +111,17 @@ console.log(this.state.form);
   return (
     <div className="App">
     <br />
-  <button className="btn btn-success" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()}}>Agregar Trabajador</button>
-  <br /><br />
-    <table className="table ">
+    <tr>
+      <td>
+      <h6 className='ttable' >Personal</h6>
+      </td>
+      <td>
+      <button className="btn btn-success" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()}}><AiIcons.AiFillPlusCircle fontSize="xx-large" /></button>
+      </td>
+    </tr>
+   
+   
+   <table className="tableV2 ">
       <thead>
         <tr>
           <th>ID</th>
@@ -128,7 +138,7 @@ console.log(this.state.form);
         {/* */}
         {this.state.data.map(personal=>{
           return(
-            <tr>
+            <tr align="center">
           <td>{personal.id_personal}</td>
           <td>{personal.rut}</td>
           <td>{personal.nombre}</td>

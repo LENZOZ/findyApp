@@ -21,7 +21,7 @@ export function MisReservas(){
 
       const getMesas = async () => {
    
-        let result = await fetch("http://localhost:3001/api/mesa");
+        let result = await fetch("http://api.findy.cl/api/mesa");
         result = await result.json();
         setMesas(result);
         console.table(mesas);

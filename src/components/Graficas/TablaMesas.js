@@ -7,7 +7,7 @@ import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 
 const authA = localStorage.getItem("admin");
 
-const id=  1//JSON.parse(authA).Local_id_local;
+const id=  1;//JSON.parse(authA).Local_id_local;
 const url="https://api.findy.cl/api/mesa/";
 const url2="https://api.findy.cl/api/mesa/";
 
@@ -22,7 +22,7 @@ state={
     id_Mesa: '',
     capacidad: '',
     nro_mesa: '',
-    Caracteristicas: ''
+    updatedAt: ''
   }
 }
 
@@ -77,7 +77,7 @@ seleccionarEmpresa=(mesa)=>{
       id_Mesa: mesa.id_Mesa,
       capacidad: mesa.capacidad,
       nro_mesa: mesa.nro_mesa,
-      Caracteristicas: mesa.Caracteristicas[0].caracteristica
+      updatedAt: mesa.updatedAt
     }
   })
 }
@@ -112,7 +112,6 @@ console.log(this.state.form);
           <th>ID</th>
           <th>Capacidad</th>
           <th>nro_mesa</th>
-          <th>Caracteristicas</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -124,7 +123,6 @@ console.log(this.state.form);
           <td>{mesa.id_Mesa}</td>
           <td>{mesa.capacidad}</td>
           <td>{mesa.nro_mesa}</td>
-          <td>{mesa.Caracteristicas[0].caracteristica}</td>
           <td>
                 <button className="btn btn-primary" onClick={()=>{this.seleccionarEmpresa(mesa); this.modalInsertar()}}><FontAwesomeIcon icon={faEdit}/></button>
                 {"   "}
@@ -152,9 +150,6 @@ console.log(this.state.form);
                     <br />
                     <label htmlFor="nombre">N°Mesa</label>
                     <input className="form-control" type="text" name="nro_mesa" id="pais" onChange={this.handleChange} value={form?form.nro_mesa: ''}/>
-                    <br />
-                    <label htmlFor="nombre">Caracteristicas</label>
-                    <input className="form-control" type="text" name="caracteristica" id="pais" onChange={this.handleChange} value={form?form.Caracteristicas: ''}/>
                     <br />
                     
                     

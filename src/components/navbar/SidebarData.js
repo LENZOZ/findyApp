@@ -17,24 +17,24 @@ export const SidebarData = [
     icon: <IoIcons.IoIosPaper />,
     cName: 'nav-text'
   },
-  {
+  /*{
     title: 'Productos',
     path: '/admin/productos',
     icon: <FaIcons.FaCartPlus />,
     cName: 'nav-text'
-  },
+  },*/
   {
     title: 'Personal',
     path: '/admin/personal',
     icon: <IoIcons.IoMdPeople />,
     cName: 'nav-text'
   },
-  {
+  /*{
     title: 'Menu',
     path: '/admin/menus',
     icon: <FaIcons.FaEnvelopeOpenText />,
     cName: 'nav-text'
-  },
+  },*/
   {
     title: 'Mesas',
     path: '/admin/Mesas',

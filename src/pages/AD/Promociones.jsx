@@ -2,8 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import { Card, Button, Form, Row, Col, Container, Tab, Nav, Navbar } from "react-bootstrap";
 import { Outlet, Link, useNavigate } from "react-router-dom";
 import { SidebarData } from "../../components/navbar/SidebarData";
-import { PromCar } from "../../components/Cards/PromCar";
-import { PromGrid } from "../../components/Cards/PromGrid";
+import PromCar from "../../components/Cards/PromCar";
+import PromGrid from "../../components/Cards/PromGrid";
 
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';

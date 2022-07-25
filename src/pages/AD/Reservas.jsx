@@ -30,10 +30,10 @@ export const Reservas = () => {
             {/*Tablas*/}
             <Col xs={9} md={10}>
             <h6 className='ttable' >Reservas</h6>
-            </Col>
+            </Col>{/*
             <Col xs>
             <Nav.Link as={Link} to="/admin/reservas/agregar" className='tableNav' ><AiIcons.AiFillPlusCircle fontSize="xx-large" /></Nav.Link>
-            </Col>
+            </Col> */}
             </Row>
             <Row xs md lg className="g-4">
             <Col>

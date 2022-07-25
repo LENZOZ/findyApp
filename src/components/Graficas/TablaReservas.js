@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import moment from 'moment';
+import "./TablesV2.css";
 
 const authA = localStorage.getItem("admin");
 
@@ -109,9 +110,9 @@ console.log(this.state.form);
   return (
     <div className="App">
     <br />
-  <button className="btn btn-success" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()}}>Agregar Mesa</button>
-  <br /><br />
-    <table className="table ">
+  {/*<button className="btn btn-success" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()}}>Agregar Mesa</button>*/}
+  
+    <table className="tableV2">
       <thead>
         <tr>
           <th>ID</th>
@@ -126,17 +127,17 @@ console.log(this.state.form);
         {/* */}
         {this.state.data.map(reserva=>{
           return(
-            <tr>
-          <td>{reserva.id_Reserva}</td>
-          <td>{reserva.Usuario_id_usuario}</td>
-          <td>{reserva.Mesa_id_mesa}</td>
-          <td>{reserva.estado}</td>
-          <td>{moment(reserva.fecha_reserva,"YYYY-MM-DD HH:mm:ss").format('DD-MM-YYYY')}</td>
-          <td>
-                <button className="btn btn-primary" onClick={()=>{this.seleccionarEmpresa(reserva); this.modalInsertar()}}><FontAwesomeIcon icon={faEdit}/></button>
-                {"   "}
-                <button className="btn btn-danger" onClick={()=>{this.seleccionarEmpresa(reserva); this.setState({modalEliminar: true})}}><FontAwesomeIcon icon={faTrashAlt}/></button>
-                </td>
+            <tr align="center">
+              <td>{reserva.id_Reserva}</td>
+              <td>{reserva.Usuario_id_usuario}</td>
+              <td>{reserva.Mesa_id_mesa}</td>
+              <td>{reserva.estado}</td>
+              <td>{moment(reserva.fecha_reserva,"YYYY-MM-DD HH:mm:ss").format('DD-MM-YYYY')}</td>
+              <td>
+                    <button className="btn btn-primary" onClick={()=>{this.seleccionarEmpresa(reserva); this.modalInsertar()}}><FontAwesomeIcon icon={faEdit}/></button>
+                    {"   "}
+                    <button className="btn btn-danger" onClick={()=>{this.seleccionarEmpresa(reserva); this.setState({modalEliminar: true})}}><FontAwesomeIcon icon={faTrashAlt}/></button>
+                    </td>
           </tr>
           )
         })}
@@ -155,7 +156,7 @@ console.log(this.state.form);
                     <input className="form-control" type="number" name="id_Reserva" id="id" readOnly onChange={this.handleChange} value={form?form.id_Reserva: this.state.data.length+1}/>
                     <br />
                     <label htmlFor="nombre">Usuario</label>
-                    <input className="form-control" type="number" name="Usuario_id_usuario" id="Usuario_id_usuario" readOnly onChange={this.handleChange} value={form?form.Usuario_id_usuario: ''}/>
+                    <input className="form-control" type="number" name="Usuario_id_usuario" id="Usuario_id_usuario" onChange={this.handleChange} value={form?form.Usuario_id_usuario: ''}/>
                     <br />
                     <label htmlFor="nombre">Mesa</label>
                     <input className="form-control" type="number" name="mesa" id="Mesa_id_mesa" onChange={this.handleChange} value={form?form.mesa: ''}/>
@@ -167,7 +168,7 @@ console.log(this.state.form);
                     <br />
                      */}
                      <select className="form-control" name="estado" id="estado" onChange={this.handleChange} value={form?form.estado: ''}>
-                      <option disabled selected>Elija una opcion</option>
+                      <option disabled selected={true}>Elija una opcion</option>
                       <option value="1">Solicitado</option>
                       <option value="2">Aprovado</option>
                       <option value="3">Completado</option>

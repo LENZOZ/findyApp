@@ -12,10 +12,6 @@ import * as IoIcons from 'react-icons/io';
 
 export const Personal = () => {
 
-    const [sidebar, setSidebar] = useState(false);
-
-      const showSidebar = () => setSidebar(!sidebar);
-
     return(
         <div>
              {/*Sidebar+Content*/}
@@ -24,12 +20,9 @@ export const Personal = () => {
           <Col xs md lg >
           <Row xs md lg className="g-4">
             {/*Tablas*/}
-            <Col xs={9} md={10}>
-            <h6 className='ttable' >Personal</h6>
-            </Col>
-            <Col xs>
+            {/*<Col xs>
             <Nav.Link as={Link} to="/admin/personal/agregar" className='tableNav' ><AiIcons.AiFillPlusCircle fontSize="xx-large" /></Nav.Link>
-            </Col>
+            </Col>*/}
             </Row>
             <Row xs md lg className="g-4">
             <Col>

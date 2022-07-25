@@ -5,7 +5,7 @@ import React, { Component } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
 import "./LocalDetalle.css";
 
-const API = "http://localhost:3001/api";
+const API = "http://api.findy.cl/api";
 
 const loader = new Loader({
   apiKey: "AIzaSyA0hhQQOW8VPRgQ42EecqdSyvH3lPfRmT8",

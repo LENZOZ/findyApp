@@ -1,0 +1,37 @@
+.PromMenu{
+    width: 100%;
+    margin-top: 15px;
+    display: block;
+    justify-content: center;
+    top: 0;
+    box-shadow: 0 .3em .5em lightgray;
+    border-radius: 1%;
+}
+.h3car{
+    text-shadow: 0 0 1.8em black;
+}
+
+.tMenu{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    text-shadow: 0 0em .7em gray;
+    margin-left: 2%;
+    margin-top: 9px;
+    text-align: center;
+    width: 100%;
+    height:fit-content;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    background-color: black;
+    box-shadow: 0  .2em .5em lightgray ;
+  }
+
+  .MenuCarta{
+    width: 100%;
+  }
+
+  .carta{
+    width: 100%;
+  }
