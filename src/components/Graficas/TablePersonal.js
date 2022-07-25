@@ -1,57 +1,207 @@
-import * as React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
-import './Tables.css';
+import React, { Component } from 'react';
+import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 
-{/* Ejemplo de parametros para las tabla
+const authA = localStorage.getItem("admin");
 
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    valueGetter: (params) =>
-      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-*/}
+const id=  1//JSON.parse(authA).Local_id_local;
+const url="https://api.findy.cl/api/personal/";
+const url2="https://api.findy.cl/api/personal/";
 
-const columns = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'Rut', headerName: 'Rut', width: 110},
-  { field: 'Nombre', headerName: 'Nombre', width: 130 },
-  { field: 'Edad', headerName: 'Edad', width: 70 },
-  { field: 'Telefono', headerName: 'Telefono', width: 130 },
-  { field: 'Correo', headerName: 'Correo', width: 180 },
-  { field: 'Cargo', headerName: 'Cargo', width: 130 },
-];
+class App extends Component {
+//Formulario de los datos
+state={
+  data:[],
+  modalInsertar: false,
+  modalEliminar: false,
+  form:{
+    Local_id_local:id,
+    id_personal: '',
+    rut: '',
+    nombre: '',
+    cargo: '',
+    correo: '',
+    fecha_nacimiento: '',
+    telefono: ''
+  }
+}
 
-{/*Cambiar por consultas sql*/}
-const rows = [
-  { id: 1, Rut: '124115345', Nombre: 'Juan', Edad: 25, Telefono: 12334653, Correo: 'Admin.2@gmail.com', Cargo: 'Admin' },
-  { id: 2, Rut: '204115345', Nombre: 'John', Edad: 20, Telefono: 94274653, Correo: 'Mesero.1@gmail.com', Cargo: 'Mesero' },
-  { id: 3, Rut: '204115345', Nombre: 'John', Edad: 20, Telefono: 94274653, Correo: 'Mesero.1@gmail.com', Cargo: 'Mesero' },
-  { id: 4, Rut: '204115345', Nombre: 'John', Edad: 20, Telefono: 94274653, Correo: 'Mesero.1@gmail.com', Cargo: 'Mesero' },
-  { id: 5, Rut: '204115345', Nombre: 'John', Edad: 20, Telefono: 94274653, Correo: 'Mesero.1@gmail.com', Cargo: 'Mesero' },
-  { id: 6, Rut: '204115345', Nombre: 'John', Edad: 20, Telefono: 94274653, Correo: 'Mesero.1@gmail.com', Cargo: 'Mesero' },
-  { id: 7, Rut: '204115345', Nombre: 'John', Edad: 20, Telefono: 94274653, Correo: 'Mesero.1@gmail.com', Cargo: 'Mesero' },
-  { id: 8, Rut: '204115345', Nombre: 'John', Edad: 20, Telefono: 94274653, Correo: 'Mesero.1@gmail.com', Cargo: 'Mesero' },
-  { id: 9, Rut: '204115345', Nombre: 'John', Edad: 20, Telefono: 94274653, Correo: 'Mesero.1@gmail.com', Cargo: 'Mesero' },
-  { id: 20, Rut: '204115345', Nombre: 'John', Edad: 20, Telefono: 94274653, Correo: 'Mesero.1@gmail.com', Cargo: 'Mesero' },
-  { id: 12, Rut: '204115345', Nombre: 'John', Edad: 20, Telefono: 94274653, Correo: 'Mesero.1@gmail.com', Cargo: 'Mesero' }
-];
+/*Toda esta vaina es axios para el crud */
+peticionGet=()=>{
+axios.get(url+id).then(response=>{
+  this.setState({data: response.data});
+}).catch(error=>{
+  console.log(error.message);
+})
+}
+
+peticionPost=async()=>{
+ await axios.post(url2+id ,this.state.form).then(response=>{
+    this.modalInsertar();
+    this.peticionGet();
+  }).catch(error=>{
+    console.log(error.message);
+  })
+}
+
+peticionPut=()=>{
+  axios.put(url2+this.state.form.id_personal, this.state.form).then(response=>{
+    this.modalInsertar();
+    this.peticionGet();
+  })
+}
+
+peticionDelete=()=>{
+   axios.delete(url2+this.state.form.id_personal).then(response=>{
+    this.setState({modalEliminar: false});
+    this.peticionGet();
+   
+
+  }).catch(error=>{
+    alert("No se puede eliminar esta mesa");
+  })
+}
+/** hasta por aqui */
 
 
+modalInsertar=()=>{
+  this.setState({modalInsertar: !this.state.modalInsertar});
+}
 
-export default function DataTable() {
+seleccionarEmpresa=(personal)=>{
+  this.setState({
+    tipoModal: 'actualizar',
+    form: {
+      Local_id_local:personal.Local_id_local,
+      id_personal: personal.id_personal,
+      rut: personal.rut,
+      nombre: personal.nombre,
+      cargo: personal.cargo,
+      correo: personal.correo,
+      fecha_nacimiento: personal.fecha_nacimiento,
+      telefono: personal.telefono
+    }
+  })
+}
+
+
+handleChange=async e=>{
+e.persist();
+await this.setState({
+  form:{
+    ...this.state.form,
+    [e.target.name]: e.target.value
+  }
+});
+console.log(this.state.form);
+}
+
+  componentDidMount() {
+    this.peticionGet();
+  }
+  
+//Esto es toda la tabla
+  render(){
+    const {form}=this.state;
   return (
-    <div style={{ height: 550, width: '100%' }}>
-     <DataGrid 
-        className='dtable'
-        rows={rows}
-        columns={columns}
-        pageSize={8}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-        //checkboxSelection (Funciona para agregar checkbox al lateral de la tabla)
-      />
-    </div>
+    <div className="App">
+    <br />
+  <button className="btn btn-success" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()}}>Agregar Trabajador</button>
+  <br /><br />
+    <table className="table ">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Rut</th>
+          <th>Nombre</th>
+          <th>Cargo</th>
+          <th>Correo</th>
+          <th>Fecha de nacimiento</th>
+          <th>Telefono</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {/* */}
+        {this.state.data.map(personal=>{
+          return(
+            <tr>
+          <td>{personal.id_personal}</td>
+          <td>{personal.rut}</td>
+          <td>{personal.nombre}</td>
+          <td>{personal.cargo}</td>
+          <td>{personal.correo}</td>
+          <td>{personal.fecha_nacimiento}</td>
+          <td>{personal.telefono}</td>
+          <td>
+                <button className="btn btn-primary" onClick={()=>{this.seleccionarEmpresa(personal); this.modalInsertar()}}><FontAwesomeIcon icon={faEdit}/></button>
+                {"   "}
+                <button className="btn btn-danger" onClick={()=>{this.seleccionarEmpresa(personal); this.setState({modalEliminar: true})}}><FontAwesomeIcon icon={faTrashAlt}/></button>
+                </td>
+          </tr>
+          )
+        })}
+      </tbody>
+    </table>
+{/**---------------- */}
+
+{/**Esto son los modales (Ventanas flotante de insertar, eliminar y actualizar) */}
+    <Modal isOpen={this.state.modalInsertar}>
+                <ModalHeader style={{display: 'block'}}>
+                  <span style={{float: 'right'}} onClick={()=>this.modalInsertar()}>x</span>
+                </ModalHeader>
+                <ModalBody>
+                  <div className="form-group">
+                    <label htmlFor="id">ID</label>
+                    <input className="form-control" type="text" name="id_personal" id="id" readOnly onChange={this.handleChange} value={form?form.id_personal: this.state.data.length+1}/>
+                    <br />
+                    <label htmlFor="nombre">Rut</label>
+                    <input className="form-control" type="text" name="rut" id="rut" onChange={this.handleChange} value={form?form.rut: ''}/>
+                    <br />
+                    <label htmlFor="nombre">Nombre</label>
+                    <input className="form-control" type="text" name="nombre" id="nombre" onChange={this.handleChange} value={form?form.nombre: ''}/>
+                    <br />
+                    <label htmlFor="nombre">Cargo</label>
+                    <input className="form-control" type="text" name="cargo" id="cargo" onChange={this.handleChange} value={form?form.cargo: ''}/>
+                    <br />
+                    <label htmlFor="nombre">Correo</label>
+                    <input className="form-control" type="text" name="correo" id="correo" onChange={this.handleChange} value={form?form.correo: ''}/>
+                    <br />
+                    <label htmlFor="nombre">Fecha de Nacimiento</label>
+                    <input className="form-control" type="date" name="fecha_nacimiento" id="fecha_nacimiento" onChange={this.handleChange} value={form?form.fecha_nacimiento: ''}/>
+                    <br />
+                    <label htmlFor="nombre">Telefono</label>
+                    <input className="form-control" type="text" name="telefono" id="telefono" onChange={this.handleChange} value={form?form.telefono: ''}/>
+                    <br />
+                    
+                  </div>
+                </ModalBody>
+                <ModalFooter>
+                  {this.state.tipoModal=='insertar'?
+                    <button className="btn btn-success" onClick={()=>this.peticionPost()}>
+                    Insertar
+                  </button>: <button className="btn btn-primary" onClick={()=>this.peticionPut()}>
+                    Actualizar
+                  </button>}
+                    <button className="btn btn-danger" onClick={()=>this.modalInsertar()}>Cancelar</button>
+                </ModalFooter>
+          </Modal>
+          <Modal isOpen={this.state.modalEliminar}>
+            <ModalBody>
+               Estás seguro que deseas eliminar la mesa {form && form.nombre}
+            </ModalBody>
+            <ModalFooter>
+              <button className="btn btn-danger" onClick={()=>this.peticionDelete()}>Sí</button>
+              <button className="btn btn-secundary" onClick={()=>this.setState({modalEliminar: false})}>No</button>
+            </ModalFooter>
+          </Modal>
+{/**---------------- */}
+  </div>
+  
   );
 }
+}
+export default App;
