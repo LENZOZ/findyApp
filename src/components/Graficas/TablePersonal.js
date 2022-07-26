@@ -9,7 +9,10 @@ import "./TablesV2.css";
 
 const authA = localStorage.getItem("admin");
 
-const id=  1//JSON.parse(authA).Local_id_local;
+let id=  0;//JSON.parse(authA).Local_id_local;
+if (authA){
+  id = JSON.parse(authA).Local_id_local;
+}
 const url="https://api.findy.cl/api/personal/";
 const url2="https://api.findy.cl/api/personal/";
 

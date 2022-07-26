@@ -11,9 +11,12 @@ import "./TablesV2.css";
 
 const authA = localStorage.getItem("admin");
 
-const id=  1;//JSON.parse(authA).Local_id_local;
+let id=  0;//JSON.parse(authA).Local_id_local;
+if (authA){
+  id = JSON.parse(authA).Local_id_local;
+}
 const url="https://api.findy.cl/api/reserva/total/";
-const url2="https://api.findy.cl/api/reserva/total/";
+const url2="https://api.findy.cl/api/mesa/";
 const url3="https://api.findy.cl/api/reserva/";
 
 class App extends Component {
@@ -42,7 +45,7 @@ axios.get(url+id).then(response=>{
 }
 
 peticionPost=async()=>{
- await axios.post(url3+id ,this.state.form).then(response=>{
+ await axios.post(url2+id ,this.state.form).then(response=>{
     this.modalInsertar();
     this.peticionGet();
   }).catch(error=>{
@@ -80,9 +83,12 @@ seleccionarEmpresa=(reserva)=>{
     form: {
       Local_id_local:reserva.Local_id_local,
       id_Reserva: reserva.id_Reserva,
+      id: reserva.Usuario_id_usuario,
       Usuario_id_usuario: reserva.Usuario_id_usuario,
+      mesaId: reserva.Mesa_id_mesa,
       mesa: reserva.Mesa_id_mesa,
       estado: reserva.estado,
+      fecha: reserva.fecha_reserva,
       datetime: reserva.fecha_reserva
     }
   })
@@ -110,7 +116,7 @@ console.log(this.state.form);
   return (
     <div className="App">
     <br />
-  {/*<button className="btn btn-success" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()}}>Agregar Mesa</button>*/}
+    {/*<button className="btn btn-success" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()}}>Agregar Reserva</button>*/}
   
     <table className="tableV2">
       <thead>
@@ -156,10 +162,16 @@ console.log(this.state.form);
                     <input className="form-control" type="number" name="id_Reserva" id="id" readOnly onChange={this.handleChange} value={form?form.id_Reserva: this.state.data.length+1}/>
                     <br />
                     <label htmlFor="nombre">Usuario</label>
-                    <input className="form-control" type="number" name="Usuario_id_usuario" id="Usuario_id_usuario" onChange={this.handleChange} value={form?form.Usuario_id_usuario: ''}/>
+                    {this.state.tipoModal=='insertar'?
+                    <input className="form-control" type="number" name="id" id="id" onChange={this.handleChange} value={form?form.id: ''}/>:
+                    <input className="form-control" type="number" name="Usuario_id_usuario" id="Usuario_id_usuario"  onChange={this.handleChange} value={form?form.Usuario_id_usuario: ''}/>
+                    }
                     <br />
                     <label htmlFor="nombre">Mesa</label>
+                    {this.state.tipoModal=='insertar'?
+                    <input className="form-control" type="number" name="mesaId" id="mesaId" onChange={this.handleChange} value={form?form.mesaId: ''}/>:
                     <input className="form-control" type="number" name="mesa" id="Mesa_id_mesa" onChange={this.handleChange} value={form?form.mesa: ''}/>
+                    }
                     <br />
                     
                     <label htmlFor="nombre">Estado</label>
@@ -168,15 +180,17 @@ console.log(this.state.form);
                     <br />
                      */}
                      <select className="form-control" name="estado" id="estado" onChange={this.handleChange} value={form?form.estado: ''}>
-                      <option disabled selected={true}>Elija una opcion</option>
+                      <option disabled defaultValue>Elija una opcion</option>
                       <option value="1">Solicitado</option>
                       <option value="2">Aprovado</option>
                       <option value="3">Completado</option>
                      </select>
                      <br />
-
                     <label htmlFor="nombre">Fecha</label>
+                    {this.state.tipoModal=='insertar'?
+                    <input className="form-control" type="date" name="fecha" id="fecha" onChange={this.handleChange} value={form?moment(form.fecha, "YYYY-MM-DD HH:mm:ss").format('YYYY-MM-DD'): ''}/>:
                     <input className="form-control" type="date" name="datetime" id="stock" onChange={this.handleChange} value={form?moment(form.datetime, "YYYY-MM-DD HH:mm:ss").format('YYYY-MM-DD'): ''}/>
+                    }
                     <br />
                     
                   </div>

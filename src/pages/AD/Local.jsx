@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Card, Button, Form, Row, Col, Container, Tab } from "react-bootstrap";
 import { Outlet, Link, useNavigate } from "react-router-dom";
-import { LocalMenus } from "../../components/Cards/LocalMenus";
+import LocalMenus from "../../components/Cards/LocalMenus";
 
 import { SidebarData } from "../../components/navbar/SidebarData";
 
@@ -9,7 +9,7 @@ import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
 
-import { LocalCar } from "../../components/Cards/LocalCar";
+import { LocalImgCar } from "../../components/Cards/LocalImgCar";
 import TableMenus from "../../components/Graficas/TableMenus";
 import PromGrid from "../../components/Cards/PromGrid";
 
@@ -33,7 +33,7 @@ export const Local = () => {
                       </Row>
                       <Row>
                         <Col>
-                          <LocalCar />
+                          <LocalImgCar />
                         </Col>
                       </Row>
                       <Row className="MenuCarta" xs={1} md={2} align="center">
