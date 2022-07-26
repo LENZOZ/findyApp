@@ -11,8 +11,10 @@ import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 
 const authA = localStorage.getItem("admin");
-
-const id=  1//JSON.parse(authA).Local_id_local;
+let id=  0;//JSON.parse(authA).Local_id_local;
+if (authA){
+  id = JSON.parse(authA).Local_id_local;
+}
 const url="https://api.findy.cl/api/promocion/all/";
 
 class PromGrid extends Component {
