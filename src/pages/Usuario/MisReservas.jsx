@@ -64,8 +64,7 @@ export function MisReservas(){
       <th>#</th>
       <th>Local</th>
       <th>Mesa</th>
-      <th>Fecha & Hora</th>
-      
+      <th>Fecha & Hora</th> 
     </tr>
   </thead>
   <tbody>
@@ -76,21 +75,10 @@ export function MisReservas(){
       <td>{localR(reserva.Local_id_local)}</td>
       <td>{reserva.Mesa_id_mesa}</td>
       <td>{Moment(reserva.fecha_reserva).format('DD-MM-YYYY hh:mm')}</td> 
-      <td></td>
     </tr>
   ))}
   </tbody>
 </Table>
-<table>
-<th>Prueba</th>
-
-{mesas.map((mesa)=>(
-<tr>
-  <td>{mesa.Local.nombre}</td>
-  </tr>
-))}
-
-</table>
 
 </Container>
         </>

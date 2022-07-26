@@ -59,6 +59,7 @@ const LoginAdmin = () => {
       <Card style={{ width: "18rem" }} className="border-0">
         <Card.Img variant="top" src={logo} width="150" height="150" />
         <Card.Body>
+        <Card.Title className="text-center">¡Administrador!</Card.Title>
           <Card.Title className="text-center">Ingresa tus datos</Card.Title>
           <Card.Text>
             <Form>
