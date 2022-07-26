@@ -45,7 +45,7 @@ axios.get(url+id).then(response=>{
 }
 
 peticionPost=async()=>{
- await axios.post(url2+id ,this.state.form).then(response=>{
+ await axios.post(url2 ,this.state.form).then(response=>{
     this.modalInsertar();
     this.peticionGet();
   }).catch(error=>{
@@ -117,7 +117,7 @@ console.log(this.state.form);
     <div className="App">
     <br />
     {/*<button className="btn btn-success" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()}}>Agregar Reserva</button>*/}
-  
+    <button className="btn btn-success" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()}}>Agregar Reserva</button>
     <table className="tableV2">
       <thead>
         <tr>

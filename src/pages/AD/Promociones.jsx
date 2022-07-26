@@ -27,7 +27,6 @@ export const Promociones = () => {
             {/*Tablas*/}
             <Col align="center">           
             <PromCar />
-            <Navbar.Brand as={Link} to="/admin/promociones/agregar" className="ttables">+</Navbar.Brand>
             <PromGrid />
             </Col>
           </Row>
