@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
+import * as AiIcons from 'react-icons/ai';
 
 const authA = localStorage.getItem("admin");
 
@@ -107,9 +108,17 @@ console.log(this.state.form);
     const {form}=this.state;
   return (
     <div className="App">
-    <br /><br /><br />
-  <button className="btn btn-success" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()}}>Agregar Mesa</button>
-  <br /><br />
+    <br />
+    <tr>
+      <td>
+      <h6 className='ttable' >Mesas</h6>
+      </td>
+      <td>
+      <button className="btn btn-success" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()}}><AiIcons.AiFillPlusCircle fontSize="xx-large" /></button>
+      </td>
+    </tr>
+   
+ <br />
     <table className="table ">
       <thead>
         <tr>

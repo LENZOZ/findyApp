@@ -26,14 +26,6 @@ export const Mesas = () => {
               <Col xs md lg >
               <Row xs md lg className="g-4">
                 {/*Tablas*/}
-                <Col xs={9} md={10}>
-                <h6 className='ttable' >Mesas</h6>
-                </Col>
-                <Col xs>
-                <Nav.Link as={Link} to="/admin/mesas/agregar" className='tableNav' ><AiIcons.AiFillPlusCircle fontSize="xx-large" /></Nav.Link>
-                </Col>
-                </Row>
-                <Row xs md lg className="g-4">
                 <Col>
                     <DataTable />
                 </Col>
