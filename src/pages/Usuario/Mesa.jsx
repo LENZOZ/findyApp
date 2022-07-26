@@ -7,10 +7,12 @@ export function Mesa (){
   const { mesaId } = useParams();
   const auth = localStorage.getItem("usuario");
   const [caracteristicas, setCaracteristicas] = useState([]);
+  const [mesa, setMesa] = useState([]);
   const dateRef = useRef();
 
   useEffect(() => {
     getLocales();
+    getMesa();
   }, []);
   /**
    *  
@@ -38,6 +40,13 @@ export function Mesa (){
     result = await result.json();
     setCaracteristicas(result);
   };
+
+  const getMesa = async () => {
+   
+    let result = await fetch("https://api.findy.cl/api/mesa/i/"+mesaId);
+    result = await result.json();
+    setMesa(result);
+  };
   
 
     return(
@@ -45,6 +54,7 @@ export function Mesa (){
             <br></br><br></br>
             <h3>Información de la mesa</h3>
             <br></br><br></br>
+            <h4>Capacidad: {mesa.capacidad} personas</h4>
             {caracteristicas.map((car) => (
             <h4>{car.caracteristica}</h4>
             ))}
